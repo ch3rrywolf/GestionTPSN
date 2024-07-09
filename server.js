@@ -10,10 +10,9 @@ app.use(express.urlencoded({extended: true}));
 app.use(express.json());
 app.use(cors());
 
-app.get("/blog", async (req, res, next) => {
+app.get("/", async (req, res, next) => {
     res.send({
-        title: "test blog",
-        description: "test blogtest blogtest blogtest blogtest blogtest blogtest blog"
+        title: "test"
     });
 });
 
