@@ -5,14 +5,19 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 const cors = require('cors');
 
+//Core
+var corOptions = {
+    origin: 'https://127.0.0.1:8081'
+}
 
+// middleware
 app.use(express.urlencoded({extended: true}));
 app.use(express.json());
 app.use(cors());
 
 app.get("/", async (req, res, next) => {
     res.send({
-        title: "test"
+        title: "Welcome to !!",
     });
 });
 

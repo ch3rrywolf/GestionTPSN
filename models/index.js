@@ -19,13 +19,6 @@ const sequelize = new Sequelize(
     }
 )
 
-sequelize.authenticate()
-.then(() => {
-    console.log('Connected..')
-})
-.catch(err => {
-    console.log('Error'+ err)
-})
 
 const db = {}
 
@@ -33,12 +26,6 @@ db.Sequelize = Sequelize
 db.sequelize = sequelize
 
 db.Users = require('./UserModel.js')(sequelize, DataTypes)
-
-db.sequelize.sync({ force: false })
-.then(() => {
-    console.log('re-sync done!')
-})
-
 
 
 module.exports = db
