@@ -5,7 +5,6 @@ const { authSchema } = require("../helpers/authValidation_schema");
 // create main Model
 const User = db.Users
 
-// main work
 // Register
 const register = async (req, res, next) => {
     try {
@@ -32,7 +31,6 @@ const register = async (req, res, next) => {
         next(error); 
     }
 };
-
 
 module.exports = {
     register

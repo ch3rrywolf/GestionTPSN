@@ -1,6 +1,5 @@
-// import controller review, products
+// import controller
 const authController = require('../controllers/Auth.controller.js')
-
 
 // router
 const router = require('express').Router()

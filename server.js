@@ -15,14 +15,14 @@ router.use(express.urlencoded({extended: true}));
 router.use(express.json());
 router.use(cors());
 
-router.get("/", async (req, res, next) => {
-    res.send({
-        title: "Welcome to !!",
-    });
-});
+// testing api
+router.get('/', (req, res) => {
+    res.json({ message: 'hi from api'})
+})
 
+// testing auth
 const authRoutes = require("./routes/Auth.routes");
-router.use("/auth", authRoutes);
+router.use("/api/auth", authRoutes);
 
 router.use( async (req, res, next) => {
     const error = new Error("Page not Found");
