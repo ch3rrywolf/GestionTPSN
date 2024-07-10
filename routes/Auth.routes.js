@@ -1,22 +1,12 @@
-const express = require("express");
-const router = express.Router();
+// import controller review, products
+const authController = require('../controllers/Auth.controller.js')
 
 
-router.get("/", async (req, res, next) => {
-    res.send({
-        title: "test",
-    });
-});
+// router
+const router = require('express').Router()
 
-// POST /register endpoint
-router.post("/register", async (req, res, next) => {
-    try {
-       
-
-    } catch (error) {
-        
-    }
-});
+//use routers
+router.post('/register', authController.register)
 
 
-module.exports = router;
+module.exports = router
