@@ -20,7 +20,6 @@ const register = async (req, res, next) => {
         const hashpassword = await bcrypt.hash(result.password, 10);
 
         const user = await User.create({
-            username: result.username,
             matricule: result.matricule,
             email: result.email,
             password: hashpassword,
