@@ -24,7 +24,7 @@ const register = async (req, res, next) => {
             email: result.email,
             password: hashpassword,
             role: result.role,
-            isAdmin: result.role === 'admin'
+            isAdmin: false
         });
         
         const profile = await Profile.create({
@@ -32,7 +32,7 @@ const register = async (req, res, next) => {
             Users_id: user.id
         });
 
-        res.status(200).send(result);
+        res.status(200).json({ user: result, message: "User created !"});
 
     } catch (error) {
         if(error.isJoi === true ) error.status = 422;
