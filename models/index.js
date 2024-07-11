@@ -22,10 +22,23 @@ const sequelize = new Sequelize(
 
 const db = {}
 
+
+
 db.Sequelize = Sequelize
 db.sequelize = sequelize
 
 db.Users = require('./UserModel.js')(sequelize, DataTypes)
+db.Profile = require('./ProfileModel.js')(sequelize, DataTypes)
 
+
+// One-To-One
+db.Users.hasOne(db.Profile, {
+    foreignKey: 'Users_id',
+    as: 'profile'
+});
+db.Profile.belongsTo(db.Users, {
+    foreignKey: 'Users_id',
+    as: 'user'
+});
 
 module.exports = db

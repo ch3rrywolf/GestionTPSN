@@ -1,8 +1,9 @@
 module.exports = (sequelize, DataTypes) => {
     const Users = sequelize.define('Users', {
-      username: {
+      matricule: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: false,
+        unique: true
       },
       email: {
         type: DataTypes.STRING,
@@ -12,7 +13,17 @@ module.exports = (sequelize, DataTypes) => {
       password: {
         type: DataTypes.STRING,
         allowNull: false
+      },
+      role: {
+        type: DataTypes.STRING,
+        allowNull: false
+      },
+      isAdmin: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: false
       }
+    }, {
+        tableName: 'users'
     });
   
     return Users;

@@ -4,6 +4,7 @@ const bcrypt = require("bcrypt");
 const { authSchema } = require("../helpers/authValidation_schema");
 // create main Model
 const User = db.Users
+const Profile = db.Profile
 
 // Register
 const register = async (req, res, next) => {
@@ -11,7 +12,7 @@ const register = async (req, res, next) => {
 
         const result = await authSchema.validateAsync(req.body);
 
-        if (!User) throw createError.InternalServerError('Users model is not defined.');
+        if (!User || !Profile) throw createError.InternalServerError('Users Or Profile model is not defined.');
 
         const existingUser = await User.findOne({ where: { email: result.email } });
         if (existingUser) throw createError.Conflict(`${result.email} is already registered.`);
@@ -19,10 +20,16 @@ const register = async (req, res, next) => {
         const hashpassword = await bcrypt.hash(result.password, 10);
 
         const user = await User.create({
-            username: result.username,
+            matricule: result.matricule,
             email: result.email,
-            password: hashpassword
-        }); 
+            password: hashpassword,
+            role: result.role
+        });
+        
+        const profile = await Profile.create({
+            username: result.username,
+            Users_id: user.id
+        });
 
         res.status(200).send(result);
 
