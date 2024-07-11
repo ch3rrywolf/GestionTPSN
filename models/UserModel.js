@@ -1,5 +1,9 @@
 module.exports = (sequelize, DataTypes) => {
     const Users = sequelize.define('Users', {
+      username: {
+        type: DataTypes.STRING,
+        allowNull: false
+      },
       matricule: {
         type: DataTypes.STRING,
         allowNull: false,
@@ -25,6 +29,13 @@ module.exports = (sequelize, DataTypes) => {
     }, {
         tableName: 'users'
     });
+
+    Users.associate = (models) => {
+      Users.hasOne(models.Profile, {
+        foreignKey: 'Users_id',
+        as: 'profile'
+      });
+    };
   
     return Users;
   };

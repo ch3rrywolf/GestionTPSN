@@ -7,7 +7,6 @@ module.exports = (sequelize, DataTypes) => {
       datedenaissance: {
         type: DataTypes.STRING,
         allowNull: true,
-        unique: true
       },
       numerotelephone: {
         type: DataTypes.STRING,
@@ -16,11 +15,17 @@ module.exports = (sequelize, DataTypes) => {
       localisation: {
       type: DataTypes.STRING,
       allowNull: true,
-      unique: true
       }
     }, {
         tableName: 'profiles'
     });
   
+    Profile.associate = (models) => {
+      Profile.belongsTo(models.Users, {
+        foreignKey: 'Users_id',
+        as: 'user'
+      });
+    };
+
     return Profile;
   };

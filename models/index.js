@@ -32,13 +32,10 @@ db.Profile = require('./ProfileModel.js')(sequelize, DataTypes)
 
 
 // One-To-One
-db.Users.hasOne(db.Profile, {
-    foreignKey: 'Users_id',
-    as: 'profile'
-});
-db.Profile.belongsTo(db.Users, {
-    foreignKey: 'Users_id',
-    as: 'user'
-});
+Object.keys(db).forEach(modelName => {
+    if (db[modelName].associate) {
+      db[modelName].associate(db);
+    }
+  });
 
 module.exports = db
