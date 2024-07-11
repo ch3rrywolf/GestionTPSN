@@ -9,4 +9,4 @@ const authSchema = Joi.object({
 });
 
 
-module.exports = { authSchema, loginSchema }
+module.exports = { authSchema }
