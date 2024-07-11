@@ -2,6 +2,7 @@ const db = require('../models')
 const createError = require("http-errors");
 const bcrypt = require("bcrypt");
 const { authSchema } = require("../helpers/authValidation_schema");
+const { singAccessToken } = require("../helpers/jwt_authentication");
 // create main Model
 const User = db.Users
 const Profile = db.Profile
@@ -31,6 +32,7 @@ const register = async (req, res, next) => {
             username: result.username,
             Users_id: user.id
         });
+
 
         res.status(200).json({ user: result, message: "User created !"});
 

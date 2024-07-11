@@ -31,7 +31,6 @@ db.Users = require('./UserModel.js')(sequelize, DataTypes)
 db.Profile = require('./ProfileModel.js')(sequelize, DataTypes)
 
 
-// One-To-One
 Object.keys(db).forEach(modelName => {
     if (db[modelName].associate) {
       db[modelName].associate(db);
